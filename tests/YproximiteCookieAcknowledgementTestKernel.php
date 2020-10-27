@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
 use Symfony\Component\Routing\RouteCollectionBuilder;
 use Yproximite\Bundle\CookieAcknowledgement\YproximiteCookieAcknowledgementBundle;
 
-class AbstractYproximiteCookieAcknowledgementTestKernel extends Kernel
+abstract class AbstractYproximiteCookieAcknowledgementTestKernel extends Kernel
 {
     use MicroKernelTrait;
 
@@ -66,7 +66,6 @@ if (AbstractYproximiteCookieAcknowledgementTestKernel::VERSION_ID >= 50100) {
         protected function configureRoutes(RoutingConfigurator $routes): void
         {
             $routes->add('homepage', '/')->controller([$this, 'requestHomepage']);
-            $routes->add('/foo', 'kernel::renderFoo');
         }
     }
 } else {
