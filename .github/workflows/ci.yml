@@ -30,11 +30,9 @@ jobs:
 
             -   run: composer validate --strict
 
-            # -   run: composer phpstan
+            -   run: vendor/bin/phpstan anal
 
-            # -   run: composer php-cs-fixer@ci
-
-            # -   run: composer phpcs
+            -   run: vendor/bin/php-cs-fixer fix --dry-run
 
     ci:
         runs-on: ubuntu-latest
