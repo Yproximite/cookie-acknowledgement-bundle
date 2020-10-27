@@ -13,6 +13,9 @@ class CookieAcknowledgementService implements CookieAcknowledgementInterface
         $this->template = $template;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function render(array $data = []): string
     {
         return $this->twig->render($this->template, $data);

@@ -10,11 +10,12 @@ use Yproximite\Bundle\CookieAcknowledgement\Service\CookieAcknowledgementService
 
 class CookieAcknowledgementBarListener implements EventSubscriberInterface
 {
-    protected $cookieService;
+    private $cookieService;
 
-    protected static $listenerKernelPriority = -128;
+    /** @var int */
+    private static $listenerKernelPriority = -128;
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             KernelEvents::RESPONSE => ['onKernelResponse', static::$listenerKernelPriority],
@@ -37,8 +38,11 @@ class CookieAcknowledgementBarListener implements EventSubscriberInterface
 
     protected function injectCookieBar(Response $response): void
     {
-        $content = $response->getContent();
-        $pos     = mb_strripos($content, '</body>');
+        if (false === $content = $response->getContent()) {
+            return;
+        }
+
+        $pos = mb_strripos($content, '</body>');
 
         if (false !== $pos) {
             $toolbar = sprintf("\n%s\n", $this->cookieService->render());

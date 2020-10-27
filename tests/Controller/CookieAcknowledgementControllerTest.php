@@ -9,12 +9,7 @@ use Yproximite\Bundle\CookieAcknowledgement\YproximiteCookieAcknowledgementBundl
 
 class CookieAcknowledgementControllerTest extends TestCase
 {
-    protected function getBundleClass()
-    {
-        return YproximiteCookieAcknowledgementBundle::class;
-    }
-
-    public function testIfCookieAcknowledgementBarAppearsIfCookieIsNotSet()
+    public function testIfCookieAcknowledgementBarAppearsIfCookieIsNotSet(): void
     {
         $kernel = new YproximiteCookieAcknowledgementTestKernel();
         $client = new KernelBrowser($kernel);
@@ -23,7 +18,7 @@ class CookieAcknowledgementControllerTest extends TestCase
 
         $cookieInfoBar = $crawler->filter('#cookie-law-info-bar');
 
-        $this->assertEquals(1, $cookieInfoBar->count());
-        $this->assertStringContainsString('cookie.message.accept', $cookieInfoBar->html());
+        static::assertEquals(1, $cookieInfoBar->count());
+        static::assertStringContainsString('cookie.message.accept', $cookieInfoBar->html());
     }
 }

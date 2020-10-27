@@ -7,7 +7,6 @@ use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Bundle\TwigBundle\TwigBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
@@ -28,23 +27,24 @@ abstract class AbstractYproximiteCookieAcknowledgementTestKernel extends Kernel
         return [
             new FrameworkBundle(),
             new TwigBundle(),
-            new YproximiteCookieAcknowledgementBundle()
+            new YproximiteCookieAcknowledgementBundle(),
         ];
     }
 
-    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $containerBuilder): void
     {
-        $container->loadFromExtension('framework', [
+        $containerBuilder->loadFromExtension('framework', [
             'secret' => 'my-secret',
-            'test' => true,
+            'test'   => true,
         ]);
 
-        $container->loadFromExtension('twig', [
-            'paths' => [__DIR__ .'/..'],
+        $containerBuilder->loadFromExtension('twig', [
+            'paths' => [__DIR__.'/..'],
         ]);
     }
 
-    public function requestHomepage() {
+    public function requestHomepage(): Response
+    {
         return new Response(<<<HTML
 <!DOCTYPE html>
 <html>
@@ -57,20 +57,21 @@ abstract class AbstractYproximiteCookieAcknowledgementTestKernel extends Kernel
 </html>
 HTML
         );
-
     }
 }
 
-if (AbstractYproximiteCookieAcknowledgementTestKernel::VERSION_ID >= 50100) {
-    class YproximiteCookieAcknowledgementTestKernel extends AbstractYproximiteCookieAcknowledgementTestKernel {
+if (AbstractYproximiteCookieAcknowledgementTestKernel::VERSION_ID >= 50100) { // @phpstan-ignore-line
+    class YproximiteCookieAcknowledgementTestKernel extends AbstractYproximiteCookieAcknowledgementTestKernel
+    {
         protected function configureRoutes(RoutingConfigurator $routes): void
         {
             $routes->add('homepage', '/')->controller([$this, 'requestHomepage']);
         }
     }
-} else {
-    class YproximiteCookieAcknowledgementTestKernel extends AbstractYproximiteCookieAcknowledgementTestKernel {
-        protected function configureRoutes(RouteCollectionBuilder $routes)
+} else { // @phpstan-ignore-line
+    class YproximiteCookieAcknowledgementTestKernel extends AbstractYproximiteCookieAcknowledgementTestKernel
+    {
+        protected function configureRoutes(RouteCollectionBuilder $routes): void
         {
             $routes->add('/', 'kernel::requestHomepage');
         }
