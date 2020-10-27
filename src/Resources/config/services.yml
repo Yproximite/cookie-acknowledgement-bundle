@@ -7,3 +7,9 @@ services:
         class: '%yproximite.cookie_acknowledgement_bar.service.class%'
         arguments: ['@twig', '%yproximite.cookie_acknowledgement_bar.template%']
 
+    yproximite.cookie_acknowledgement_bar.event_listener:
+        class: '%yproximite.cookie_acknowledgement_bar.event_listener.class%'
+        arguments:
+            - '@yproximite.cookie_acknowledgement_bar.service'
+        tags:
+            - { name: kernel.event_listener, event: 'kernel.response' }

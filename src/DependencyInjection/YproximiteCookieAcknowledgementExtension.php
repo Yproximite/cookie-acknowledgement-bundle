@@ -19,7 +19,7 @@ class YproximiteCookieAcknowledgementExtension extends Extension
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
@@ -27,24 +27,10 @@ class YproximiteCookieAcknowledgementExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if ($config['response_injection']) {
-            $this->registerResponseListener($container);
+        if (!$config['response_injection']) {
+            $container->removeDefinition('yproximite.cookie_acknowledgement_bar.event_listener');
         }
 
         $container->setParameter('yproximite.cookie_acknowledgement_bar.template', $config['template']);
-    }
-
-    protected function registerResponseListener(ContainerBuilder $container)
-    {
-        $definition = new Definition();
-        $definition->setClass($container->getParameter('yproximite.cookie_acknowledgement_bar.event_listener.class'));
-        $definition->addArgument(new Reference('yproximite.cookie_acknowledgement_bar.service'));
-
-        $definition->addTag('kernel.event_listener', array(
-            'event'  => 'kernel.response',
-            'method' => 'onKernelResponse'
-        ));
-
-        $container->setDefinition('yproximite.cookie_acknowledgement_bar.event_listener', $definition);
     }
 }
