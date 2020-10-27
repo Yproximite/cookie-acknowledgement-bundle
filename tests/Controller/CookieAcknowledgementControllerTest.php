@@ -2,19 +2,29 @@
 
 namespace Yproximite\Bundle\CookieAcknowledgement\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\BrowserKit\Cookie;
+use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Component\HttpKernel\Kernel;
+use Yproximite\Bundle\CookieAcknowledgement\Tests\DummyKernel;
+use Yproximite\Bundle\CookieAcknowledgement\YproximiteCookieAcknowledgementBundle;
 
-class CookieAcknowledgementControllerTest extends WebTestCase
+class CookieAcknowledgementControllerTest extends TestCase
 {
+    protected function getBundleClass()
+    {
+        return YproximiteCookieAcknowledgementBundle::class;
+    }
+
     public function testIfCookieAcknowledgementBarAppearsIfCookieIsNotSet()
     {
-        $client = static::createClient();
-        $client->restart();
+        $kernel = new DummyKernel();
+        $client = new KernelBrowser($kernel);
 
-        //check if cookie bar appear
         $crawler = $client->request('GET', '/');
-        $this->assertEquals(1, $crawler->filter('#cookie-law-info-bar')->count());
 
+        $cookieInfoBar = $crawler->filter('#cookie-law-info-bar');
+
+        $this->assertEquals(1, $cookieInfoBar->count());
+        $this->assertStringContainsString('cookie.message.accept', $cookieInfoBar->html());
     }
 }
