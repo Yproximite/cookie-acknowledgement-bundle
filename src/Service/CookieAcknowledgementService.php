@@ -2,27 +2,19 @@
 
 namespace Yproximite\Bundle\CookieAcknowledgement\Service;
 
-use Yproximite\Bundle\CookieAcknowledgement\Service\CookieAcknowledgementInterface;
-
 class CookieAcknowledgementService implements CookieAcknowledgementInterface
 {
-    protected $template;
+    private $twig;
+    private $template;
 
-    /**
-     *
-     * @var \Symfony\Bundle\TwigBundle\Debug\TimedTwigEngine
-     */
-    protected $templating;
-
-    public function __construct($templating, $template)
+    public function __construct(\Twig\Environment $twig, string $template)
     {
-        $this->templating = $templating;
-        $this->template   = $template;
+        $this->twig     = $twig;
+        $this->template = $template;
     }
 
-    public function render(array $data = array())
+    public function render(array $data = []): string
     {
-        return $this->templating->render($this->template, $data);
+        return $this->twig->render($this->template, $data);
     }
-
 }

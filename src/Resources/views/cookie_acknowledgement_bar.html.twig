@@ -1,16 +1,16 @@
-{% block xsolve_cookie_message %}
-    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/xsolvecookieacknowledgement/css/cookie-bar.css') }}" media="all"/>
+{% block yproximite_cookie_message %}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/yproximitecookieacknowledgement/css/cookie-bar.css') }}" media="all"/>
     <div id="cookie-law-info-bar">
         <p>
-            {{ 'cookie.message'|trans({}, 'XsolveCookieAcknowledgementBundle') }}
+            {{ 'cookie.message'|trans({}, 'YproximiteCookieAcknowledgementBundle') }}
             <a href="#" id="js-cookie-law-close-button">
-                {{ 'cookie.message.accept'|trans({}, 'XsolveCookieAcknowledgementBundle') }}
+                {{ 'cookie.message.accept'|trans({}, 'YproximiteCookieAcknowledgementBundle') }}
             </a>
         </p>
     </div>
 {% endblock %}
 
-{% block xsolve_cookie_message_js %}
-    <script type="text/javascript" src="{{ asset('bundles/xsolvecookieacknowledgement/js/cookie-bar.js') }}">
+{% block yproximite_cookie_message_js %}
+    <script type="text/javascript" src="{{ asset('bundles/yproximitecookieacknowledgement/js/cookie-bar.js') }}">
     </script>
 {% endblock %}

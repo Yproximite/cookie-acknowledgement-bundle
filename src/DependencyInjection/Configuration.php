@@ -20,17 +20,17 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('xsolve_cookie_acknowledgement');
+        $treeBuilder = new TreeBuilder('yproximite_cookie_acknowledgement');
+        $rootNode    = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
                 ->scalarNode('response_injection')
-                ->defaultValue(true)
+                    ->defaultValue(true)
                 ->end()
 
                 ->scalarNode('template')
-                ->defaultValue('XsolveCookieAcknowledgementBundle::cookie_acknowledgement_bar.html.twig')
+                    ->defaultValue('@YproximiteCookieAcknowledgement/cookie_acknowledgement_bar.html.twig')
                 ->end()
             ->end();
 

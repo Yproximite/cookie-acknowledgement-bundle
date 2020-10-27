@@ -14,7 +14,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class XsolveCookieAcknowledgementExtension extends Extension
+class YproximiteCookieAcknowledgementExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -31,20 +31,20 @@ class XsolveCookieAcknowledgementExtension extends Extension
             $this->registerResponseListener($container);
         }
 
-        $container->setParameter('xsolve.cookie_acknowledgement_bar.template', $config['template']);
+        $container->setParameter('yproximite.cookie_acknowledgement_bar.template', $config['template']);
     }
 
     protected function registerResponseListener(ContainerBuilder $container)
     {
         $definition = new Definition();
-        $definition->setClass($container->getParameter('xsolve.cookie_acknowledgement_bar.event_listener.class'));
-        $definition->addArgument(new Reference('xsolve.cookie_acknowledgement_bar.service'));
+        $definition->setClass($container->getParameter('yproximite.cookie_acknowledgement_bar.event_listener.class'));
+        $definition->addArgument(new Reference('yproximite.cookie_acknowledgement_bar.service'));
 
         $definition->addTag('kernel.event_listener', array(
             'event'  => 'kernel.response',
             'method' => 'onKernelResponse'
         ));
 
-        $container->setDefinition('xsolve.cookie_acknowledgement_bar.event_listener', $definition);
+        $container->setDefinition('yproximite.cookie_acknowledgement_bar.event_listener', $definition);
     }
 }

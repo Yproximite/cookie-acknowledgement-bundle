@@ -1,8 +1,9 @@
 parameters:
-    xsolve.cookie_acknowledgement_bar.service.class: Yproximite\Bundle\CookieAcknowledgement\Service\CookieAcknowledgementService
-    xsolve.cookie_acknowledgement_bar.event_listener.class: Yproximite\Bundle\CookieAcknowledgement\EventListener\CookieAcknowledgementBarListener
+    yproximite.cookie_acknowledgement_bar.service.class: Yproximite\Bundle\CookieAcknowledgement\Service\CookieAcknowledgementService
+    yproximite.cookie_acknowledgement_bar.event_listener.class: Yproximite\Bundle\CookieAcknowledgement\EventListener\CookieAcknowledgementBarListener
 
 services:
-    xsolve.cookie_acknowledgement_bar.service:
-        class: "%xsolve.cookie_acknowledgement_bar.service.class%"
-        arguments:    ["@templating", "%xsolve.cookie_acknowledgement_bar.template%"]
+    yproximite.cookie_acknowledgement_bar.service:
+        class: '%yproximite.cookie_acknowledgement_bar.service.class%'
+        arguments: ['@twig', '%yproximite.cookie_acknowledgement_bar.template%']
+
