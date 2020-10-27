@@ -11,9 +11,10 @@ use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigura
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use Symfony\Component\Routing\RouteCollectionBuilder;
 use Yproximite\Bundle\CookieAcknowledgement\YproximiteCookieAcknowledgementBundle;
 
-class DummyKernel extends Kernel
+class AbstractYproximiteCookieAcknowledgementTestKernel extends Kernel
 {
     use MicroKernelTrait;
 
@@ -31,20 +32,16 @@ class DummyKernel extends Kernel
         ];
     }
 
-    public function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
+    protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
         $container->loadFromExtension('framework', [
+            'secret' => 'my-secret',
             'test' => true,
         ]);
 
         $container->loadFromExtension('twig', [
             'paths' => [__DIR__ .'/..'],
         ]);
-    }
-
-    public function configureRoutes(RoutingConfigurator $routes)
-    {
-        $routes->add('homepage', '/')->controller([$this, 'requestHomepage']);
     }
 
     public function requestHomepage() {
@@ -61,5 +58,22 @@ class DummyKernel extends Kernel
 HTML
         );
 
+    }
+}
+
+if (AbstractYproximiteCookieAcknowledgementTestKernel::VERSION_ID >= 50100) {
+    class YproximiteCookieAcknowledgementTestKernel extends AbstractYproximiteCookieAcknowledgementTestKernel {
+        protected function configureRoutes(RoutingConfigurator $routes): void
+        {
+            $routes->add('homepage', '/')->controller([$this, 'requestHomepage']);
+            $routes->add('/foo', 'kernel::renderFoo');
+        }
+    }
+} else {
+    class YproximiteCookieAcknowledgementTestKernel extends AbstractYproximiteCookieAcknowledgementTestKernel {
+        protected function configureRoutes(RouteCollectionBuilder $routes)
+        {
+            $routes->add('/', 'kernel::requestHomepage');
+        }
     }
 }

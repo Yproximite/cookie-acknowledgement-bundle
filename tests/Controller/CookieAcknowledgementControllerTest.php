@@ -4,8 +4,7 @@ namespace Yproximite\Bundle\CookieAcknowledgement\Tests\Controller;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
-use Symfony\Component\HttpKernel\Kernel;
-use Yproximite\Bundle\CookieAcknowledgement\Tests\DummyKernel;
+use Yproximite\Bundle\CookieAcknowledgement\Tests\YproximiteCookieAcknowledgementTestKernel;
 use Yproximite\Bundle\CookieAcknowledgement\YproximiteCookieAcknowledgementBundle;
 
 class CookieAcknowledgementControllerTest extends TestCase
@@ -17,7 +16,7 @@ class CookieAcknowledgementControllerTest extends TestCase
 
     public function testIfCookieAcknowledgementBarAppearsIfCookieIsNotSet()
     {
-        $kernel = new DummyKernel();
+        $kernel = new YproximiteCookieAcknowledgementTestKernel();
         $client = new KernelBrowser($kernel);
 
         $crawler = $client->request('GET', '/');
