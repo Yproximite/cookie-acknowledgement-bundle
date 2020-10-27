@@ -1,87 +1,84 @@
-# About
-
-[![knpbundles.com](http://knpbundles.com/xsolve-pl/xsolve-cookie-acknowledgement-bundle/badge)](http://knpbundles.com/xsolve-pl/xsolve-cookie-acknowledgement-bundle)
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/b87709eb-abae-4825-81a5-88068438e45d/big.png)](https://insight.sensiolabs.com/projects/b87709eb-abae-4825-81a5-88068438e45d)
+# YproximiteCookieAcknowledgementBundle
 
 This bundle provides information about an cookies usage, which is forced by European Union by so-called [EU cookie law](http://www.ico.org.uk/for_organisations/privacy_and_electronic_communications/the_guide/cookies).
 
 It includes:
 
-* fast & easy integration and short learning curve
-* automatic cookie bar injection on the bottom of the page
-* ability to manually inject cookie bar (for example for iframes)
-* ability to change text and "close button" name
-* locale aware
-* ability to provide own cookie bar template
+- fast & easy integration and short learning curve
+- automatic cookie bar injection on the bottom of the page
+- ability to manually inject cookie bar (for example for iframes)
+- ability to change text and "close button" name
+- locale aware
+- ability to provide own cookie bar template
 
 This bundle requires Multibyte String extension.
 
-![Example usage](https://raw.github.com/xsolve-pl/xsolve-cookie-acknowledgement-bundle/master/Resources/doc/xsolve-cookie-acknowledgement-bundle-example.png)
+![Example usage](./src/Resources/doc/example.png)
 
-# Installation
+## Installation
 
-1) Add to composer.json
+Configure Composer to use packagist.com repository:
+```json
+{
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.packagist.com/yproximite/"
+        },
+        {
+            "packagist.org": false
+        }
+    ]
+}
+```
 
-    "require": {
-        "xsolve-pl/xsolve-cookie-acknowledgement-bundle": "1.0.*"
-    },
+Then run: 
+```console
+$ composer require yproximite/cookie-acknowledgement-bundle
+```
 
-2) Install dependencies
+## Usage
 
-    composer install
-
-3) Run the bundle in app/AppKernel.php
-
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new Xsolve\CookieAcknowledgementBundle\XsolveCookieAcknowledgementBundle(),
-        );
-    }
-
-# Usage
-
-## For all static pages
+### For all static pages
 
 By default the cookie bar will be visible on every page after turning on bundle.
 
-## For iframes
+### For iframes
 
-Disable response injection in app/config/config.yml
+Disable response injection in `config/packages/yproximite_cookie_acknowledgment_.yaml`:
 
-    xsolve_cookie_acknowledgement:
+    yproximite_cookie_acknowledgement:
         response_injection: false
 
 Include cookie bar in appropriate location
 
-    {% include 'XsolveCookieAcknowledgementBundle::cookie_acknowledgement_bar.html.twig' %}
+    {% include '@YproximiteCookieAcknowledgement/cookie_acknowledgement_bar.html.twig' %}
 
 ## Configuration options
 
-Configuration can be adjusted in app/config/config.yml
+Configuration can be adjusted in `config/packages/yproximite_cookie_acknowledgment_.yaml`:
 
-    xsolve_cookie_acknowledgement:
+    yproximite_cookie_acknowledgement:
         response_injection: true # default true
-        template: custom_cookie_bar.html.twig # twig template name, default: XsolveCookieAcknowledgementBundle::cookie_acknowledgement_bar.html.twig
+        template: custom_cookie_bar.html.twig # twig template name, default: '@YproximiteCookieAcknowledgement/cookie_acknowledgement_bar.html.twig'
 
-## Altering cookie bar texts
+### Altering cookie bar texts
 
-Place tranlations file in your app directory:
+Place tranlations file in your project directory:
 
-    app/Resources/translations/XsolveCookieAcknowledgementBundle.en.yml
+    `translations/YproximiteCookieAcknowledgementBundle.en.yml`
 
-And change texts
+And change texts:
 
     cookie.message: My message
     cookie.message.accept: Accept button text
 
 Of course you can set up those texts in as many locales as you want.
 
-## Altering cookie bar apperance
+### Altering cookie bar appearance
 
-By default cookie bar comes with some default styles. If you wish to change those, use CSS. For example you may want pink background with placement on top of the page:
+By default cookie bar comes with some default styles. If you wish to change those, use CSS. 
+For example you may want pink background with placement on top of the page:
 
     #cookie-law-info-bar {
         background: pink !important;
@@ -91,25 +88,25 @@ By default cookie bar comes with some default styles. If you wish to change thos
 
 Please note that every style needs ```!important``` to override provided inline styles.
 
-## Altering whole cookie bar template
+### Altering whole cookie bar template
 
-You use your own template by setting it in the configuration (app/config/config.yml):
+You use your own template by setting it in the configuration:
 
-    xsolve_cookie_acknowledgement:
-        template: ::custom_cookie_bar.html.twig
+    yproximite_cookie_acknowledgement:
+        template: custom_cookie_bar.html.twig
 
-In above case template is located in app/Resources/custom_cookie_bar.html.twig
+In above case template is located in `templates/custom_cookie_bar.html.twig`.
 
-Also base template can be reused be Twig extension (two blocks are used: xsolve_cookie_message and xsolve_cookie_message_js), see example below:
+Also base template can be reused be Twig extension (two blocks are used: `yproximite_cookie_message` and `yproximite_cookie_message_js`), see example below:
 
-    {% extends "XsolveCookieAcknowledgementBundle::cookie_acknowledgement_bar.html.twig" %}
+    {% extends "@YproximiteCookieAcknowledgement/cookie_acknowledgement_bar.html.twig" %}
 
-    {% block xsolve_cookie_message %}
+    {% block yproximite_cookie_message %}
         {{ parent() }}
         <div>This is something custom</div>
     {% endblock %}
 
-    {% block xsolve_cookie_message_js %}
+    {% block yproximite_cookie_message_js %}
         {{ parent() }}
         <script type="text/javascript">
             document.getElementById('js-cookie-law-close-button').onclick = function () {
@@ -117,16 +114,3 @@ Also base template can be reused be Twig extension (two blocks are used: xsolve_
             }
         </script>
     {% endblock %}
-
-# Automated testing
-
-There are fe simple test to make sure that everything works fine. To run tests include this bundle
-into some Symfony2 project (Symfony Standard Edition is enough). Then put testsuite in app/phpunit.xml
-
-    <testsuite name="XSolve Cookie Acknowledgement Bundle Suite">
-        <directory>../vendor/xsolve-pl/xsolve-cookie-acknowledgement-bundle/Xsolve/CookieAcknowledgementBundle/Tests/</directory>
-    </testsuite>
-
-And run
-
-    phpunit -c app/

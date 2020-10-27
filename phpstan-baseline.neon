@@ -1,0 +1,17 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method scalarNode\\(\\) on Symfony\\\\Component\\\\Config\\\\Definition\\\\Builder\\\\NodeParentInterface\\|null\\.$#"
+			count: 1
+			path: src/DependencyInjection/Configuration.php
+
+		-
+			message: "#^Method Yproximite\\\\Bundle\\\\CookieAcknowledgement\\\\DependencyInjection\\\\YproximiteCookieAcknowledgementExtension\\:\\:load\\(\\) has parameter \\$configs with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/DependencyInjection/YproximiteCookieAcknowledgementExtension.php
+
+		-
+			message: "#^Method Yproximite\\\\Bundle\\\\CookieAcknowledgement\\\\EventListener\\\\CookieAcknowledgementBarListener\\:\\:getSubscribedEvents\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/EventListener/CookieAcknowledgementBarListener.php
+

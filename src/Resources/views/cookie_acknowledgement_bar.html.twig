@@ -1,0 +1,16 @@
+{% block yproximite_cookie_message %}
+    <link type="text/css" rel="stylesheet" href="{{ asset('bundles/yproximitecookieacknowledgement/css/cookie-bar.css') }}" media="all"/>
+    <div id="cookie-law-info-bar">
+        <p>
+            {{ 'cookie.message'|trans({}, 'YproximiteCookieAcknowledgementBundle') }}
+            <a href="#" id="js-cookie-law-close-button">
+                {{ 'cookie.message.accept'|trans({}, 'YproximiteCookieAcknowledgementBundle') }}
+            </a>
+        </p>
+    </div>
+{% endblock %}
+
+{% block yproximite_cookie_message_js %}
+    <script type="text/javascript" src="{{ asset('bundles/yproximitecookieacknowledgement/js/cookie-bar.js') }}">
+    </script>
+{% endblock %}

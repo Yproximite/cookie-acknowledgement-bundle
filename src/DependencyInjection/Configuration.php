@@ -1,7 +1,10 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\DependencyInjection;
+declare(strict_types=1);
 
+namespace Yproximite\Bundle\CookieAcknowledgement\DependencyInjection;
+
+use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -16,21 +19,23 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('xsolve_cookie_acknowledgement');
+        $treeBuilder = new TreeBuilder('yproximite_cookie_acknowledgement');
+
+        /** @var ArrayNodeDefinition $rootNode */
+        $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
             ->children()
                 ->scalarNode('response_injection')
-                ->defaultValue(true)
+                    ->defaultValue(true)
                 ->end()
 
                 ->scalarNode('template')
-                ->defaultValue('XsolveCookieAcknowledgementBundle::cookie_acknowledgement_bar.html.twig')
+                    ->defaultValue('@YproximiteCookieAcknowledgement/cookie_acknowledgement_bar.html.twig')
                 ->end()
             ->end();
 

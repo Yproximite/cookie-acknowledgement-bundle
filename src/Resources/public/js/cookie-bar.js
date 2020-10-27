@@ -1,6 +1,6 @@
 (function () {
     var COOKIE_BAR = {
-        itemName: 'xsolve.cookie-law-accepted',
+        itemName: 'yproximite.cookie-law-accepted',
         itemValue: 'accepted',
 
         showCookieBar: function () {
