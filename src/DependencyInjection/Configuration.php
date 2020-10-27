@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yproximite\Bundle\CookieAcknowledgement\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
@@ -17,7 +19,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {

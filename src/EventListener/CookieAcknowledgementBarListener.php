@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yproximite\Bundle\CookieAcknowledgement\EventListener;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

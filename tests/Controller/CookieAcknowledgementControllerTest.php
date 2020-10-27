@@ -1,11 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yproximite\Bundle\CookieAcknowledgement\Tests\Controller;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Yproximite\Bundle\CookieAcknowledgement\Tests\YproximiteCookieAcknowledgementTestKernel;
-use Yproximite\Bundle\CookieAcknowledgement\YproximiteCookieAcknowledgementBundle;
 
 class CookieAcknowledgementControllerTest extends TestCase
 {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Yproximite\Bundle\CookieAcknowledgement\Service;
 
 class CookieAcknowledgementService implements CookieAcknowledgementInterface
@@ -14,7 +16,7 @@ class CookieAcknowledgementService implements CookieAcknowledgementInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function render(array $data = []): string
     {
