@@ -100,4 +100,4 @@ jobs:
               run: composer update ${{ matrix.config.COMPOSER_FLAGS }} --prefer-dist --no-interaction
 
             - name: Run PHPUnit
-              run: composer phpunit -- ${{ matrix.config.PHPUNIT_FLAGS }}
+              run: vendor/bin/phpunit -- ${{ matrix.config.PHPUNIT_FLAGS }}
