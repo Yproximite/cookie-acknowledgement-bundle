@@ -1,6 +1,6 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\DependencyInjection;
+namespace Yproximite\Bundle\CookieAcknowledgement\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader;
@@ -30,7 +30,7 @@ class XsolveCookieAcknowledgementExtension extends Extension
         if ($config['response_injection']) {
             $this->registerResponseListener($container);
         }
-        
+
         $container->setParameter('xsolve.cookie_acknowledgement_bar.template', $config['template']);
     }
 

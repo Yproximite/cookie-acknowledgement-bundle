@@ -1,6 +1,6 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\Tests;
+namespace Yproximite\Bundle\CookieAcknowledgement\Tests;
 
 require_once(__DIR__ . "/../../../../app/AppKernel.php");
 

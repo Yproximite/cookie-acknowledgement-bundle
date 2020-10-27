@@ -1,9 +1,32 @@
 {
-    "name": "xsolve-pl/xsolve-cookie-acknowledgement-bundle",
-    "description": "XSolve Cookie Acknowledgement Bundle to handle new privacy law",
+    "name": "yproximite/cookie-acknowledgement-bundle",
+    "type": "symfony-bundle",
+    "description": "Cookie Acknowledgement Bundle to handle privacy laws.",
     "license": "MIT",
-    "autoload": {
-        "psr-0": { "Xsolve\\CookieAcknowledgementBundle": "" }
+    "authors": [
+        {
+            "name": "Hugo Alliaume",
+            "email": "hugo@yproximite.com"
+        }
+    ],
+    "config": {
+        "sort-packages": true
     },
-    "target-dir" : "Xsolve/CookieAcknowledgementBundle"
+    "require": {
+        "php": "^7.3",
+        "symfony/framework-bundle": "^4.4 || ^5.0"
+    },
+    "require-dev": {
+
+    },
+    "autoload": {
+        "psr-4": {
+            "Yproximite\\Bundle\\CookieAcknowledgement\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Yproximite\\Bundle\\CookieAcknowledgement\\Tests\\": "tests/"
+        }
+    }
 }

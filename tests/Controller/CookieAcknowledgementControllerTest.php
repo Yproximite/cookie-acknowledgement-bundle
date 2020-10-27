@@ -1,6 +1,6 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\Tests\Controller;
+namespace Yproximite\Bundle\CookieAcknowledgement\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;

@@ -1,8 +1,8 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\Service;
+namespace Yproximite\Bundle\CookieAcknowledgement\Service;
 
-use Xsolve\CookieAcknowledgementBundle\Service\CookieAcknowledgementInterface;
+use Yproximite\Bundle\CookieAcknowledgement\Service\CookieAcknowledgementInterface;
 
 class CookieAcknowledgementService implements CookieAcknowledgementInterface
 {

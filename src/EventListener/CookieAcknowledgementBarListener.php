@@ -1,6 +1,6 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\EventListener;
+namespace Yproximite\Bundle\CookieAcknowledgement\EventListener;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -8,7 +8,7 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-use Xsolve\CookieAcknowledgementBundle\Service\CookieAcknowledgementService;
+use Yproximite\Bundle\CookieAcknowledgement\Service\CookieAcknowledgementService;
 
 class CookieAcknowledgementBarListener implements EventSubscriberInterface
 {

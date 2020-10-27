@@ -37,7 +37,7 @@ This bundle requires Multibyte String extension.
     {
         return array(
             // ...
-            new Xsolve\CookieAcknowledgementBundle\XsolveCookieAcknowledgementBundle(),
+            new Yproximite\Bundle\CookieAcknowledgement\XsolveCookieAcknowledgementBundle(),
         );
     }
 

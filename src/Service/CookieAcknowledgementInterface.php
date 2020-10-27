@@ -1,6 +1,6 @@
 <?php
 
-namespace Xsolve\CookieAcknowledgementBundle\Service;
+namespace Yproximite\Bundle\CookieAcknowledgement\Service;
 
 interface CookieAcknowledgementInterface
 {
